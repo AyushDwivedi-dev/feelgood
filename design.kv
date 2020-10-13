@@ -1,0 +1,110 @@
+<LoginScreen>:
+        GridLayout:
+                cols: 1
+                GridLayout:
+                        padding:15,15
+                        spacing:20,20
+                        cols:1
+                        Label:
+                                text: "User Login"
+                                font_size:'20sp'
+                        TextInput:
+                                id: username
+                                hint_text:"username"
+                        TextInput:
+                                id: password
+                                password:True
+                                hint_text:"password"
+                        RelativeLayout:
+                                Button:
+                                        text:"login"
+                                        on_press: root.login(root.ids.username.text , root.ids.password.text)
+                                        size_hint:0.3,0.5
+                                        pos_hint:{'center_x':0.5,'center_y':0.5}
+                        Label:
+                                id:wrong_input
+                                text:""
+
+                GridLayout:
+                        cols:2
+                        size_hint:0.2,0.2
+                        padding:10,10
+                        spacing:20,20
+                        Button:
+                                text:"forgot password ?"
+                                background_color:1,1,1,0
+                                color:0.1,0.3,1,1
+                        Button:
+                                text:"sign up"
+                                on_press: root.sign_up()
+                                background_color:1,1,1,0
+                                color:0.1,0.3,1,1
+
+<SignUpScreen>:
+        GridLayout:
+                cols:1
+                padding:30,30
+                spacing:60,60
+                Label:
+                        text: "User sign up "
+                        font_size:"30sp"
+                TextInput:
+                        id:username
+                        hint_text: "enter user name"
+                TextInput:
+                        id:password
+                        hint_text:"new password"
+                RelativeLayout:
+                        Button:
+                                text:"sign up"
+                                on_press: root.add_user(root.ids.username.text,root.ids.password.text)
+                                size_hint:0.3,0.5
+                                pos_hint:{'center_x':0.5,'center_y':0.5}
+
+
+<SignUpScreenSuccess>:
+        GridLayout:
+                cols:1
+                Label:
+                        text:"sign up successful"
+                Button:
+                        text:"log in page"
+                        on_press: root.log_in_page()
+
+
+<LogInScreenSuccess>:
+        GridLayout:
+                cols:1
+                padding:20,20
+                spacing:30,30
+                Button:
+                        text: "log out"
+                        on_press:root.log_out()
+                Label:
+                        text:"how do you feel ?"
+                        font_size:"30sp"
+                TextInput:
+                        id:feeling
+                        hint_text:"happy,sad,unloved...."
+                Button:
+                        text:"enlighten me"
+                        on_press: root.get_quote(root.ids.feeling.text)
+                ScrollView:
+                        Label:
+                                id:quote
+                                text: ""
+                                text_size:self.width,None
+                                size_hint_y:None
+                                height:self.texture_size[1]
+<RootWidget>:
+        LoginScreen:
+                name:"login_screen"
+
+        SignUpScreen:
+                name:"signup_screen"
+
+        SignUpScreenSuccess:
+                name:"sign_up_screen_success"
+
+        LogInScreenSuccess:
+                name:"log_in_screen_success"
